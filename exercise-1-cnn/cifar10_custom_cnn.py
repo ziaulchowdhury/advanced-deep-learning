@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar 31 21:45:03 2022
-
-@author: ziaul
-"""
-
-# -*- coding: utf-8 -*-
-"""
 Created on Wed Mar 30 01:27:17 2022
 
 @author: ziaul
@@ -276,18 +269,15 @@ class CifarCNN:
 
 if __name__=='__main__':
     
-    # SGD for all, LR=0.001, epochs=2, Activation(ReLU, LeakyReLU, Tanh)
-    cifar_cnn_relu_sgd_lr001 = CifarCNN(custom_cnn=True, activation_function=ActivationFunction.ReLU, learning_rate=0.001, use_sgd=True, num_epoch=2, write_summary=True)
-    '''CifarCNN(custom_cnn=True, activation_function=ActivationFunction.LeakyReLU, learning_rate=0.001, use_sgd=True, num_epoch=2, write_summary=True)
-    CifarCNN(custom_cnn=True, activation_function=ActivationFunction.Tanh, learning_rate=0.001, use_sgd=True, num_epoch=2, write_summary=True)
+    # SGD for all, LR=0.0001, epochs=3, Activation(ReLU, LeakyReLU, Tanh)
+    cifar_cnn_relu_sgd_lr0001 = CifarCNN(activation_function=ActivationFunction.ReLU, learning_rate=0.0001, use_sgd=True, num_epoch=3, write_summary=True)
+    cifar_cnn_leakyrelu_sgd_lr0001 = CifarCNN(activation_function=ActivationFunction.LeakyReLU, learning_rate=0.0001, use_sgd=True, num_epoch=3, write_summary=True)
+    cifar_cnn_tanh_sgd_lr0001 = CifarCNN(activation_function=ActivationFunction.Tanh, learning_rate=0.0001, use_sgd=True, num_epoch=3, write_summary=True)
     
-    # Adam for all, LR=0.001, epochs=2, Activation(ReLU, LeakyReLU, Tanh)
-    CifarCNN(custom_cnn=True, activation_function=ActivationFunction.ReLU, learning_rate=0.001, use_sgd=False, num_epoch=2, write_summary=True)
-    CifarCNN(custom_cnn=True, activation_function=ActivationFunction.LeakyReLU, learning_rate=0.001, use_sgd=False, num_epoch=2, write_summary=True)
-    CifarCNN(custom_cnn=True, activation_function=ActivationFunction.Tanh, learning_rate=0.001, use_sgd=False, num_epoch=2, write_summary=True)
-    '''
-    # cifarCNN = CifarCNN(custom_cnn=True, use_leaky_relu=False, learning_rate=0.001, use_sgd=False, num_epoch=3)
-    # cifarCNN = CifarCNN(custom_cnn=True, use_leaky_relu=False, learning_rate=0.0001, use_sgd=False, num_epoch=3)
-    # cifarCNN = CifarCNN(custom_cnn=True, use_leaky_relu=False, learning_rate=0.0001, use_sgd=False, num_epoch=10)
+    # Adam for all, LR=0.0001, epochs=3, Activation(ReLU, LeakyReLU, Tanh)
+    cifar_cnn_relu_adam_lr0001 = CifarCNN(activation_function=ActivationFunction.ReLU, learning_rate=0.0001, use_sgd=False, num_epoch=3, write_summary=True)
+    cifar_cnn_leakyrelu_adam_lr0001 = CifarCNN(activation_function=ActivationFunction.LeakyReLU, learning_rate=0.0001, use_sgd=False, num_epoch=3, write_summary=True)
+    cifar_cnn_leakyrelu_tanh_lr0001 = CifarCNN(activation_function=ActivationFunction.Tanh, learning_rate=0.0001, use_sgd=False, num_epoch=3, write_summary=True)
     
-    # cifarCNN = CifarCNN(custom_cnn=True, use_leaky_relu=True, learning_rate=0.0001, use_sgd=False, num_epoch=2)
+    cifar_cnn_leakyrelu_tanh_lr00001 = CifarCNN(activation_function=ActivationFunction.Tanh, learning_rate=0.00001, use_sgd=False, num_epoch=5, write_summary=True)
+    
