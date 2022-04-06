@@ -247,7 +247,7 @@ class CifarCNN:
     
     def write_to_tensorboard(self):
         #
-        # >> tensorboard --logdir=D:\Studies\Lulea-University-of-Technology\Individual-Courses\Advanced-Deep-Learning\Assignments\Exercise-1\runs
+        # >> tensorboard --logdir=D:\Studies\Lulea-University-of-Technology\Individual-Courses\Advanced-Deep-Learning\Assignments\advanced-deep-learning-github\exercise-1-cnn
         #
         
         if self.write_summary:
