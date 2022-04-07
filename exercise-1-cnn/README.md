@@ -16,4 +16,4 @@ Best result (i.e. 53% accuracy) was achieved by using Adam optimizer with Tanh a
 
 Following figure is taken from Tensorboard which shows the loss over the training images. Green line shows the training loss of the best model identified in section 2.1.
 
-![Trtaining loss: Custom Cifar 10 CNN](https://github.com/ziaulchowdhury/advanced-deep-learning/tree/master/exercise-1-cnn/training-loss.png)
+![Trtaining loss: Custom Cifar 10 CNN](training-loss.png)
