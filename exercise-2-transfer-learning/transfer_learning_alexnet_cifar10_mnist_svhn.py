@@ -242,5 +242,5 @@ if __name__=='__main__':
     print('SVHN dataset (AlexNet, tuning) .....')
     svhn_001_5e_tun = AlexNetModel(DataSet.SVHN, n_epoch=5, pretained=True, learning_rate=0.001, feature_extraction=False)
     print('SVHN dataset (AlexNet, feature extraction) .....')
-    svhn_001_5e_feaex = AlexNetModel(DataSet.SVHN, n_epoch=1, pretained=True, learning_rate=0.001, feature_extraction=True)
+    svhn_001_5e_feaex = AlexNetModel(DataSet.SVHN, n_epoch=5, pretained=True, learning_rate=0.001, feature_extraction=True)
     

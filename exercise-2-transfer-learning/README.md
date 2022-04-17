@@ -20,9 +20,12 @@ In the above cases, two types of transfer learning (fine tuning of ConvNet and f
 
 ### Accuracies
 
-| Dataset        | Model type            | Learning rate  | Epochs   | Accuracy |
-|:--------------:|:---------------------:|:--------------:|:--------:|:--------:|
-| MNIST          | Vanila CNN            | 0.001          | 2       | 97.00%    |
-| SVHN           | Vanila CNN            | 0.001          | 5       | 80.00%    |
-| MNIST          | Fine tuning (AlexNet) | 0.001          | 5       | 99.57%    |
-| SVHN           | Fine tuning (AlexNet) | 0.001          | 5       | 94.30%    |
+| Dataset        | Model type                       | Learning rate  | Epochs   | Accuracy |
+|:--------------:|:--------------------------------:|:--------------:|:--------:|:--------:|
+| MNIST          | Vanila CNN                       | 0.001          | 5       | 98.00%    |
+| SVHN           | Vanill CNN                       | 0.001          | 5       | 87.00%    |
+| SVHN           | Fine tuning (Vanilla CNN)        | 0.001          | 5       | .%    |
+| MNIST          | Fine tuning (AlexNet)            | 0.001          | 5       | 99.57%    |
+| MNIST          | Feature extraction (AlexNet)     | 0.001          | 5       | 97.52%    |
+| SVHN           | Fine tuning (AlexNet)            | 0.001          | 5       | 94.30%    |
+| SVHN           | Feature extraction (AlexNet)     | 0.001          | 5       | 46.56%    |
