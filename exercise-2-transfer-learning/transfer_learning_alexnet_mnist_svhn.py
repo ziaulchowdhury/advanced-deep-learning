@@ -31,9 +31,9 @@ class AlexNetModel:
         
         self.alexnet = self.create_alexnet_model(pretained=pretained)
         
+        #if not pretained:
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(self.alexnet.parameters(), lr=learning_rate, momentum=0.9)
-        
         self.train_model(optimizer, criterion, n_epoch=n_epoch)
         
         self.test_model()
@@ -112,7 +112,7 @@ class AlexNetModel:
 
 if __name__=='__main__':
     
-    mnist_001_1e = AlexNetModel(DataSet.MNIST, n_epoch=1, pretained=True, learning_rate=0.001)
+    # mnist_001_1e = AlexNetModel(DataSet.MNIST, n_epoch=1, pretained=True, learning_rate=0.001)
     
     svhn_001_1e = AlexNetModel(DataSet.SVHN, n_epoch=1, pretained=True, learning_rate=0.001)
     

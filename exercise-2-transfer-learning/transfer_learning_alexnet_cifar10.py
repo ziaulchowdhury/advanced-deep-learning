@@ -4,12 +4,7 @@ import torch
 import torchvision
 import torchvision.transforms as transforms
 import torch.nn as nn
-import torch.nn.functional as F
 import torch.optim as optim
-from torch.utils.tensorboard import SummaryWriter
-import matplotlib.pyplot as plt
-import numpy as np
-from enum import Enum
 import time
 
 
@@ -35,8 +30,8 @@ def load_data():
 def create_alexnet_model(device, pretained=True):
     alexnet = torch.hub.load('pytorch/vision:v0.6.0', 'alexnet', pretrained=pretained)
     alexnet.eval()
-    alexnet.classifier[4] = nn.Linear(4096,1024)
-    alexnet.classifier[6] = nn.Linear(1024,10)
+    alexnet.classifier[4] = nn.Linear(4096, 1024)
+    alexnet.classifier[6] = nn.Linear(1024, 10)
     
     alexnet.to(device)
     
