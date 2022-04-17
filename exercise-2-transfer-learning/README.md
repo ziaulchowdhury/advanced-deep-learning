@@ -6,8 +6,8 @@
 
 | Dataset             | Model type       | Learning rate  | Epochs   | Accuracy |
 |:----------------:|:-------------------:|:--------------:|:--------:|:--------:|
-| Cifar10          | Fine tuning         | 0.001          | 10       | 88.93%      |
-| Cifar10          | Feature extraction  | 0.001          | 10       | 75.22%      |
+| Cifar10          | Fine tuning         | 0.001          | 10       | 88.93%   |
+| Cifar10          | Feature extraction  | 0.001          | 10       | 84.43%   |
 
 
 Best result (i.e. 53% accuracy) was achieved by using Adam optimizer with Tanh activation function, learning rate 0.0001 and 3 epochs.
@@ -22,7 +22,7 @@ In the above cases, two types of transfer learning (fine tuning of ConvNet and f
 
 | Dataset        | Model type            | Learning rate  | Epochs   | Accuracy |
 |:--------------:|:---------------------:|:--------------:|:--------:|:--------:|
-| MNIST          | Vanila CNN            | 0.001          | 2       | %      |
-| SVHN           | Vanila CNN            | 0.001          | 2       | %      |
-| MNIST          | Fine tuning (AlexNet) | 0.001          | 2       | %      |
-| SVHN           | Fine tuning (AlexNet) | 0.001          | 2       | %      |
+| MNIST          | Vanila CNN            | 0.001          | 2       | 97.00%    |
+| SVHN           | Vanila CNN            | 0.001          | 5       | 80.00%    |
+| MNIST          | Fine tuning (AlexNet) | 0.001          | 5       | 99.57%    |
+| SVHN           | Fine tuning (AlexNet) | 0.001          | 5       | 94.30%    |

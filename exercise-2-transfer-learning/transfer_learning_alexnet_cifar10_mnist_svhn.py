@@ -80,7 +80,6 @@ class AlexNetModel:
         ])
         train_data = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
         test_data = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
-        # classes = ('Airplane', 'Car', 'Bird', 'Cat', 'Deer', 'Dog', 'Frog', 'Horse', 'Ship', 'Truck')
         return train_data, test_data
     
     def create_dataloaders(self):
@@ -230,11 +229,18 @@ class AlexNetModel:
 
 if __name__=='__main__':
     
-    # mnist_001_1e = AlexNetModel(DataSet.MNIST, n_epoch=1, pretained=True, learning_rate=0.001)
-    
-    # svhn_001_1e = AlexNetModel(DataSet.SVHN, n_epoch=1, pretained=True, learning_rate=0.001, feature_extraction=False)
-    # svhn_001_1e = AlexNetModel(DataSet.SVHN, n_epoch=1, pretained=True, learning_rate=0.001, feature_extraction=True)
-    
-    # cifar10_001_10e_tun = AlexNetModel(DataSet.CIFAR10, n_epoch=10, pretained=True, learning_rate=0.001, feature_extraction=False)
+    print('Cifar10 dataset (AlexNet, tuning) .....')
+    cifar10_001_10e_tun = AlexNetModel(DataSet.CIFAR10, n_epoch=10, pretained=True, learning_rate=0.001, feature_extraction=False)
+    print('Cifar10 dataset (AlexNet, feature extraction) .....')
     cifar10_001_10e_feaex = AlexNetModel(DataSet.CIFAR10, n_epoch=10, pretained=True, learning_rate=0.001, feature_extraction=True)
+        
+    print('MNIST dataset (AlexNet, tuning) .....')
+    mnist_001_5e_tun = AlexNetModel(DataSet.MNIST, n_epoch=5, pretained=True, learning_rate=0.001, feature_extraction=False)
+    print('MNIST dataset (AlexNet, feature extraction) .....')
+    mnist_001_5e_feaex = AlexNetModel(DataSet.MNIST, n_epoch=5, pretained=True, learning_rate=0.001, feature_extraction=True)
+    
+    print('SVHN dataset (AlexNet, tuning) .....')
+    svhn_001_5e_tun = AlexNetModel(DataSet.SVHN, n_epoch=5, pretained=True, learning_rate=0.001, feature_extraction=False)
+    print('SVHN dataset (AlexNet, feature extraction) .....')
+    svhn_001_5e_feaex = AlexNetModel(DataSet.SVHN, n_epoch=1, pretained=True, learning_rate=0.001, feature_extraction=True)
     
