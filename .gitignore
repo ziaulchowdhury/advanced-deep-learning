@@ -2,3 +2,5 @@
 exercise-1-cnn/data/*
 exercise-1-cnn/runs/*
 exercise-2-transfer-learning/data/*
+exercise-3-visualize-cnn/data/*
+exercise-4-rnn/char-rnn.pytorch-master/__pycache__
