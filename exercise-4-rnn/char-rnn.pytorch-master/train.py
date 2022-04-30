@@ -13,6 +13,7 @@ from model import CharRNN
 from generate import generate
 import time
 import random
+import matplotlib.pyplot as plt
 
 def random_training_set(chunk_len, batch_size, cuda, file_len, file):
     inp = torch.LongTensor(batch_size, chunk_len)
@@ -84,19 +85,31 @@ def train_save_model(
     # all_losses = []
     loss_avg = 0
     
+    perplexities, epochs = [], []
+    
     try:
         print("Training for %d epochs..." % n_epochs)
         for epoch in tqdm(range(1, n_epochs + 1)):
             inp, target = random_training_set(chunk_len, batch_size, cuda, file_len, file)
             loss = train(inp, target, cuda, chunk_len, batch_size, criterion, decoder, decoder_optimizer)
             loss_avg += loss
-    
+            
+            ppl = round(torch.exp(torch.tensor(2)).cpu().item(), 2)
+            perplexities.append(ppl)
+            epochs.append(epoch)
+            
             if epoch % print_every == 0:
                 print('[%s (%d %d%%) %.4f]' % (time_since(start), epoch, epoch / n_epochs * 100, loss))
+                print('ppl {:8.2f}'.format(ppl))
                 print(generate(decoder, 'Wh', 100, cuda=cuda), '\n')
     
         print("Saving...")
         save(decoder, filename)
+        
+        plt.plot(epochs, perplexities)
+        plt.xlabel('epochs')
+        plt.ylabel('perplexities')
+        plt.show()
     
     except KeyboardInterrupt:
         print("Saving before quit...")
