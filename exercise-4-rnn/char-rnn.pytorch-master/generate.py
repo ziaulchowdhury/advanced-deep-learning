@@ -38,25 +38,3 @@ def generate(decoder, prime_str='A', predict_len=100, temperature=0.8, cuda=True
             inp = inp.cuda()
 
     return predicted
-
-# Run as standalone script
-if __name__ == '__main__':
-    '''
-    # Parse command line arguments
-    argparser = argparse.ArgumentParser()
-    argparser.add_argument('filename', type=str)
-    argparser.add_argument('-p', '--prime_str', type=str, default='A')
-    argparser.add_argument('-l', '--predict_len', type=int, default=100)
-    argparser.add_argument('-t', '--temperature', type=float, default=0.8)
-    argparser.add_argument('--cuda', action='store_true')
-    args = argparser.parse_args()
-    '''
-    
-    # decoder = torch.load(args.filename)
-    # del args.filename
-    # print(generate(decoder, **vars(args)))
-
-    filename = '../dataset/tinyshakespeare.txt'
-    decoder = torch.load(filename)
-    del args.filename
-    print(generate(decoder, prime_str="Where"))
