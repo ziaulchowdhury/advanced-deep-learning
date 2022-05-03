@@ -20,3 +20,4 @@ With higher number of epochs (i.e. 20), accuracy of the model increased to 97%. 
 
 ### Overall remarks on PCA & T-SNE
 
+It can be observed from the image of the above experiments that T-SNE can seperate the digits properly and keeps local distances in lower dimension. In contrary, digits are somehow overlapping with PCA.
