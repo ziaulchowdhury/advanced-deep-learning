@@ -343,8 +343,8 @@ if __name__ == '__main__':
     criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.parameters())
     
-    # model, history = train(model, criterion, optimizer, dataloaders['train'], dataloaders['val'], save_file_name=save_file_name, max_epochs_stop=5, n_epochs=10, print_every=2)
-    model, history = train(model, criterion, optimizer, dataloaders['train'], dataloaders['val'], save_file_name=save_file_name, max_epochs_stop=1, n_epochs=2, print_every=2)
+    model, history = train(model, criterion, optimizer, dataloaders['train'], dataloaders['val'], save_file_name=save_file_name, max_epochs_stop=5, n_epochs=10, print_every=2)
+    # model, history = train(model, criterion, optimizer, dataloaders['train'], dataloaders['val'], save_file_name=save_file_name, max_epochs_stop=1, n_epochs=2, print_every=2)
     plot_metrics(history)
     
     make_predictions(model, dataloaders)
