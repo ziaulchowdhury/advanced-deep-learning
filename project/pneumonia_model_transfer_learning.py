@@ -328,17 +328,23 @@ def plot_metrics(history):
 if __name__ == '__main__':
     
     data_dir = './data/'
-    save_file_name = 'vgg16-chest-4.pt'
-    checkpoint_path = 'vgg16-chest-4.pth'
+    
+    use_vgg16 = False
+    if use_vgg16:
+        model_name = 'vgg16'
+    else:
+        model_name = 'resnet50'
+        
+    save_file_name = model_name + '-pneumonia-model.pt'
+    checkpoint_path = model_name + '-pneumonia-model-checkpoint.pth'
     
     dataloaders = load_pneumonia_dataset(data_dir)
-    
-    model = get_pretrained_model('vgg16')
+    model = get_pretrained_model(model_name)
     criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.parameters())
     
-    model, history = train(model, criterion, optimizer, dataloaders['train'], dataloaders['val'], save_file_name=save_file_name, max_epochs_stop=5, n_epochs=10, print_every=2)
-    # model, history = train(model, criterion, optimizer, dataloaders['train'], dataloaders['val'], save_file_name=save_file_name, max_epochs_stop=1, n_epochs=2, print_every=2)
+    # model, history = train(model, criterion, optimizer, dataloaders['train'], dataloaders['val'], save_file_name=save_file_name, max_epochs_stop=5, n_epochs=10, print_every=2)
+    model, history = train(model, criterion, optimizer, dataloaders['train'], dataloaders['val'], save_file_name=save_file_name, max_epochs_stop=1, n_epochs=2, print_every=2)
     plot_metrics(history)
     
     make_predictions(model, dataloaders)
