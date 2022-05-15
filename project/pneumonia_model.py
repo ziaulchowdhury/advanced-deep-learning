@@ -222,6 +222,3 @@ if __name__ == '__main__':
     lr = 0.005
     history = fit(num_epochs, cnn_model, F.cross_entropy, train_dl, test_dl, opt_fn, lr, accuracy)
     
-    
-    
-    
