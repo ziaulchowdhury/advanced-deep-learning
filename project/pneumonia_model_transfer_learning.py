@@ -6,24 +6,16 @@ Created on Sun May 15 16:44:47 2022
 """
 
 from timeit import default_timer as timer
-import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-from torch import optim, cuda
-
+from torch import optim
 from torchvision import transforms, datasets, models
-from torchvision.datasets import ImageFolder
-
 from torch.utils.data.dataloader import DataLoader
-from torchvision.utils import make_grid
-# from torchmetrics.functional import f1_score
+from sklearn.metrics import f1_score
 
-from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix, recall_score, accuracy_score, f1_score
 
 def load_pneumonia_dataset(data_dir, batch_size=128):
     
@@ -110,7 +102,6 @@ def train(model, criterion, optimizer, train_loader, valid_loader, save_file_nam
     epochs_no_improve = 0
     valid_loss_min = np.Inf
 
-    valid_max_acc = 0
     history = []
 
     # Number of epochs already trained (if using loaded in model weights)
