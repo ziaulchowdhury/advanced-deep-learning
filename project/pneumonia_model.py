@@ -5,7 +5,6 @@ Created on Fri May 13 00:31:02 2022
 @author: ziaul
 """
 
-# import os
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
@@ -50,6 +49,7 @@ def show_img(img, label):
 
 def show_batch(data_loader):
     for images, labels in data_loader:
+        print(f'labels: {labels}')
         fig, ax = plt.subplots(figsize = (12,12))
         ax.set_xticks([]); ax.set_yticks([])
         ax.imshow(make_grid(images[:25], 5).permute(1,2,0))
@@ -137,7 +137,11 @@ def loss_batch(model, loss_func, x, y, opt = None, metric = None):
             
     return loss.item(), len(x), metric_result
 
-def evaluate(model, loss_fn, valid_dl, metric = None):
+def evaluate(model, loss_fn, valid_dl, metric = None, save_file_name = None):
+    
+    if save_file_name:
+        model.load_state_dict(torch.load(save_file_name))
+    
     with torch.no_grad():
         results = [loss_batch(model, loss_fn, x, y, metric = metric) for x, y in valid_dl]
         
@@ -154,8 +158,10 @@ def evaluate(model, loss_fn, valid_dl, metric = None):
             
     return avg_loss, total, avg_metric
 
-def fit(epochs, model, loss_fn, train_dl, valid_dl, opt_fn = None, lr = None, metric = None):
+def fit(epochs, model, loss_fn, train_dl, valid_dl, opt_fn = None, lr = None, metric = None, save_file_name = 'vanila-cnn-pneumonia-model.pt'):
     train_losses, val_losses, val_metrics = [], [], []
+    epochs_no_improve = 0
+    valid_loss_min = np.Inf
     
     if opt_fn is None: opt_fn = torch.optim.SGD
     
@@ -171,7 +177,6 @@ def fit(epochs, model, loss_fn, train_dl, valid_dl, opt_fn = None, lr = None, me
         result = evaluate(model, loss_fn, valid_dl, metric)
         val_loss, total, val_metric = result
         
-        
         train_losses.append(train_loss)
         val_losses.append(val_loss)
         val_metrics.append(val_metric)
@@ -183,6 +188,11 @@ def fit(epochs, model, loss_fn, train_dl, valid_dl, opt_fn = None, lr = None, me
         else:
             print('Epoch {}/{}, train_loss: {:.4f}, val_loss: {:.4f}, val_{}: {:.4f}'
                  .format(epoch+1, epochs, train_loss, val_loss, metric.__name__, val_metric))
+        
+        # Save model
+        if val_loss < valid_loss_min:
+            torch.save(model.state_dict(), save_file_name)
+            valid_loss_min = val_loss
             
     return train_losses, val_losses, val_metrics
 
@@ -213,12 +223,11 @@ if __name__ == '__main__':
     test_dl = DeviceDataLoader(test_loader, device)
     to_device(cnn_model, device)
     
-    # Evaluate model
-    val_loss, _, val_acc = evaluate(cnn_model, F.cross_entropy, test_dl, metric = accuracy)
-    print(val_loss, val_acc)
-    
-    num_epochs = 3 # 10
+    num_epochs = 10
     opt_fn = torch.optim.Adam
     lr = 0.005
     history = fit(num_epochs, cnn_model, F.cross_entropy, train_dl, test_dl, opt_fn, lr, accuracy)
     
+    # Evaluate model
+    val_loss, _, val_acc = evaluate(cnn_model, F.cross_entropy, test_dl, metric = accuracy, save_file_name = 'vanila-cnn-pneumonia-model.pt')
+    print(val_loss, val_acc)
